@@ -16,12 +16,13 @@ const Navbar = () => {
     <nav className="bg-gradient-to-r from-green-800 to-green-900 text-white shadow-xl sticky top-0 z-40 backdrop-blur-sm bg-opacity-95">
       <div className="container mx-auto px-4 py-4 flex justify-between items-center">
         <Link to="/" className="text-2xl md:text-3xl font-extrabold flex items-center gap-3 tracking-wide">
-           <span className="bg-white text-green-800 p-2 rounded-xl shadow-md">
-             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="w-6 h-6 md:w-8 md:h-8">
-               <path strokeLinecap="round" strokeLinejoin="round" d="M12 3v2.25m6.364.386-1.591 1.591M21 12h-2.25m-.386 6.364-1.591-1.591M12 18.75V21m-4.773-4.227-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0Z" />
-             </svg>
-           </span>
-           <span>इनामदार <span className="text-green-300">फार्म्स</span></span>
+           <div className="bg-white p-2 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105">
+             <img src="/logo.png" alt="इनामदार फार्म्स" className="w-10 h-10 md:w-12 md:h-12 object-contain" />
+           </div>
+           <div className="flex flex-col">
+             <span className="text-white">इनामदार</span>
+             <span className="text-green-300 text-lg md:text-xl">फार्म्स</span>
+           </div>
         </Link>
         
         {/* Mobile Menu Button */}
@@ -195,9 +196,9 @@ const BuyPage = () => {
 
   const handleBuyerSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    const subject = `Buyer Inquiry: ${buyerForm.location}`;
-    const body = `Name: ${buyerForm.name}%0D%0AMobile: ${buyerForm.mobile}%0D%0ALocation Preference: ${buyerForm.location}%0D%0AAcres Needed: ${buyerForm.acres}%0D%0ABudget: ${buyerForm.budget}`;
-    window.location.href = `mailto:inamdarfarms@example.com?subject=${subject}&body=${body}`;
+    const subject = `इनामदार फार्म्स - शेत खरेदी चौकशी: ${buyerForm.location}`;
+    const body = `नमस्कार इनामदार सर,%0D%0A%0D%0Aखालील शेत खरेदीची चौकशी आहे:%0D%0A%0D%0Aनाव: ${buyerForm.name}%0D%0Aमोबाईल: ${buyerForm.mobile}%0D%0Aपसंतीचे ठिकाण: ${buyerForm.location}%0D%0Aलागणारे एकर: ${buyerForm.acres}%0D%0Aबजेट: ${buyerForm.budget}%0D%0A%0D%0Aकृपया लवकर संपर्क करा.%0D%0A%0D%0Aधन्यवाद`;
+    window.location.href = `mailto:${OWNER_DETAILS.contact.email}?subject=${subject}&body=${body}`;
   };
 
   const handleBuyerWhatsApp = () => {
@@ -206,7 +207,7 @@ const BuyPage = () => {
         return;
       }
       const msg = `नमस्कार, मला शेत घ्यायचे आहे.%0Aनाव: ${buyerForm.name}%0Aपसंतीचे गाव: ${buyerForm.location}%0Aबजेट: ${buyerForm.budget}%0Aक्षेत्र: ${buyerForm.acres} एकर`;
-      window.open(`https://wa.me/91${OWNER_DETAILS.phone}?text=${msg}`, '_blank');
+      window.open(`https://wa.me/91${OWNER_DETAILS.contact.phone}?text=${msg}`, '_blank');
   };
 
   return (
@@ -433,10 +434,10 @@ const SellFarmPage = () => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    const subject = `New Farm Sale Inquiry: ${formData.village}`;
-    const body = `Name: ${formData.name}%0D%0AMobile: ${formData.mobile}%0D%0AVillage: ${formData.village}%0D%0AAcres: ${formData.acres}%0D%0AExpected Price: ${formData.price}`;
-    window.location.href = `mailto:inamdarfarms@example.com?subject=${subject}&body=${body}`;
-    alert("तुमची माहिती सबमिट केली आहे! अधिक जलद प्रक्रियेसाठी, कृपया पुढील WhatsApp बटणावर क्लिक करा.");
+    const subject = `इनामदार फार्म्स - शेत विक्री चौकशी: ${formData.village}`;
+    const body = `नमस्कार इनामदार सर,%0D%0A%0D%0Aखालील शेत विक्रीची माहिती आहे:%0D%0A%0D%0Aनाव: ${formData.name}%0D%0Aमोबाईल: ${formData.mobile}%0D%0Aगाव: ${formData.village}%0D%0Aएकर: ${formData.acres}%0D%0Aअपेक्षित किंमत: ${formData.price}%0D%0A%0D%0Aकृपया लवकर संपर्क करा.%0D%0A%0D%0Aधन्यवाद`;
+    window.location.href = `mailto:${OWNER_DETAILS.contact.email}?subject=${subject}&body=${body}`;
+    alert("तुमची माहिती ईमेल वर पाठवली आहे! आम्ही लवकरच संपर्क करू.");
   };
 
   const handleWhatsAppSend = () => {
@@ -445,7 +446,7 @@ const SellFarmPage = () => {
          return;
      }
      const message = `नमस्कार, मला माझे शेत विकायचे आहे.%0Aनाव: ${formData.name}%0Aगाव: ${formData.village}%0Aक्षेत्र: ${formData.acres} एकर%0Aअपेक्षित किंमत: ${formData.price}`;
-     window.open(`https://wa.me/91${OWNER_DETAILS.phone}?text=${message}`, '_blank');
+     window.open(`https://wa.me/91${OWNER_DETAILS.contact.phone}?text=${message}`, '_blank');
   };
 
   return (
