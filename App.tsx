@@ -15,14 +15,8 @@ const Navbar = () => {
   return (
     <nav className="bg-gradient-to-r from-green-800 to-green-900 text-white shadow-xl sticky top-0 z-40 backdrop-blur-sm bg-opacity-95">
       <div className="container mx-auto px-4 py-4 flex justify-between items-center">
-        <Link to="/" className="text-2xl md:text-3xl font-extrabold flex items-center gap-3 tracking-wide">
-           <div className="bg-white p-2 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105">
-             <img src="/logo.png" alt="इनामदार फार्म्स" className="w-10 h-10 md:w-12 md:h-12 object-contain" />
-           </div>
-           <div className="flex flex-col">
-             <span className="text-white">इनामदार</span>
-             <span className="text-green-300 text-lg md:text-xl">फार्म्स</span>
-           </div>
+        <Link to="/" className="text-2xl md:text-3xl font-extrabold flex items-center gap-2 tracking-wide">
+           <span className="text-white">इनामदार फार्म्स</span>
         </Link>
         
         {/* Mobile Menu Button */}
